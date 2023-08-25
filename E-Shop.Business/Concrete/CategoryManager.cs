@@ -1,0 +1,55 @@
+﻿using E_Shop.Business.Abstract;
+using E_Shop.DAL.Abstract.DataManagement;
+using E_ShopAPI.Entity.Poco;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace E_Shop.Business.Concrete
+{
+    public class CategoryManager : ICategoryService
+    {
+        private readonly IUnitOfWork _uow;
+
+        public CategoryManager(IUnitOfWork uow)
+        {
+            _uow = uow;
+        }
+        public async Task<Category> GetAsync(Expression<Func<Category, bool>> Filter, params string[] IncludeProperties)
+        {
+            return await _uow.CategoryRepository.GetAsync(Filter, IncludeProperties);
+        }
+
+        public async Task<IEnumerable<Category>> GetAllAsync(Expression<Func<Category, bool>> Filter = null, params string[] IncludeProperties)
+        {
+            return await _uow.CategoryRepository.GetAllAsync(Filter, IncludeProperties);
+        }
+
+        public async Task<Category> AddAsync(Category Entity)
+        {
+            await _uow.CategoryRepository.AddAsync(Entity);
+            await _uow.SaveChangeAsync();
+            return Entity;
+        }
+
+        public async Task UpdateAsync(Category Entity)
+        {
+            await _uow.CategoryRepository.UpdateAsync(Entity);
+            await _uow.SaveChangeAsync();
+        }
+
+        public async Task RemoveAsync(Category Entity)
+        {
+            await _uow.CategoryRepository.RemoveAsync(Entity);
+            await _uow.SaveChangeAsync();
+        }
+
+        public Task<Category> AddAsync(Category category, Product product)
+        {
+            throw new NotImplementedException();
+        }
+    } 
+}

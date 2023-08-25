@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>E_Shop.Business</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!--<Nullable>enable</Nullable>-->
+  </PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\E-Shop.DAL\E-Shop.DAL.csproj" />
+		<ProjectReference Include="..\E-ShopAPI.Entity\E-ShopAPI.Entity.csproj" />
+	</ItemGroup>
+
+</Project>
